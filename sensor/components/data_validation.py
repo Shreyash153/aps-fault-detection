@@ -81,10 +81,12 @@ class DataValidation:
             current_columns = current_df.columns
 
             for base_column in base_columns:
-                base_data, current_data =base_df[base_column], current_df[base_column]
+                base_data, current_data =base_df[base_column].dropna(), current_df[base_column].dropna()
                 #Null hypothesis is that both column data drawn from same distribution
+                # logging.info(f"Hypothesis : {base_column}: {base_data.dtype}, {current_data.dtype}")
                 same_distribution = ks_2samp(base_data, current_data)
 
+                # Checking p-value to decide if data drift occurred
                 if float(same_distribution.pvalue) > 0.05:
                     #we are accepting null hypothesis
                     drift_report[base_column]={
@@ -126,9 +128,14 @@ class DataValidation:
             logging.info("Drop null values columns from test dataframe")
             test_df = self.drop_missing_values_columns(df=test_df,report_key_name="missing_values_within_test_dataset")
 
+
+            exclude_columns = ["class"]
+            utils.convert_columns_float(df=base_df, exclude_columns=exclude_columns)
+            utils.convert_columns_float(df=train_df, exclude_columns=exclude_columns)
+            utils.convert_columns_float(df=test_df, exclude_columns=exclude_columns)
+
             logging.info("Is all required columns are present in train df")
             train_df_cols_status = self.is_required_columns_exist(base_df=base_df, current_df=train_df,report_key_name="missing_columns_within_train_dataset")
-            
             logging.info("Is all required columns are present in test df")
             test_df_cols_status = self.is_required_columns_exist(base_df=base_df, current_df=test_df,report_key_name="missing_columnns_within_test_dataset")
 
