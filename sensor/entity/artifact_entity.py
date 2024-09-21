@@ -14,8 +14,15 @@ class DataValidationArtifact:
     report_file_path:str
 
 
+@dataclass
+class DataTrasformationArtifact:
+    data_transformation_dir:str
+    transform_object_path:str
+    tansform_train_path :str
+    tansform_test_path:str
+    target_encoder_path:str
 
-class DataTrasformationArtifact:...
+    
 class ModelTrainerArtifact:...
 class ModelEvaluationArtifact:...
 class ModelPusherArtifact:...

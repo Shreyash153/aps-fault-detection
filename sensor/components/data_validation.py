@@ -7,6 +7,7 @@ import pandas as pd
 import os, sys
 from sensor import utils
 import numpy as np
+from sensor.config import TARGET_COLUMN
 
 class DataValidation:
 
@@ -129,7 +130,7 @@ class DataValidation:
             test_df = self.drop_missing_values_columns(df=test_df,report_key_name="missing_values_within_test_dataset")
 
 
-            exclude_columns = ["class"]
+            exclude_columns = TARGET_COLUMN
             utils.convert_columns_float(df=base_df, exclude_columns=exclude_columns)
             utils.convert_columns_float(df=train_df, exclude_columns=exclude_columns)
             utils.convert_columns_float(df=test_df, exclude_columns=exclude_columns)
@@ -140,11 +141,11 @@ class DataValidation:
             test_df_cols_status = self.is_required_columns_exist(base_df=base_df, current_df=test_df,report_key_name="missing_columnns_within_test_dataset")
 
             if train_df_cols_status:
-                logging.info(f"All columns ara available in train df detecting data drift")
+                logging.info(f"All columns are available in train df detecting data drift")
                 self.data_drift(base_df=base_df, current_df=train_df, report_key_name="data_drift_for_train_dataset")
 
             if test_df_cols_status:
-                logging.info(f"All columns ara available in test df detecting data drift")
+                logging.info(f"All columns are available in test df detecting data drift")
                 self.data_drift(base_df=base_df, current_df=test_df,report_key_name="data_drift_for_test_dataset")
             
             #write the report
