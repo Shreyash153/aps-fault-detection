@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+# this file defines output entities for each component
+
 
 @dataclass
 class DataIngestionArtifact:
@@ -7,7 +9,12 @@ class DataIngestionArtifact:
     train_file_path:str
     test_file_path:str
 
-class DataValidationArtifact:...
+@dataclass
+class DataValidationArtifact:
+    report_file_path:str
+
+
+
 class DataTrasformationArtifact:...
 class ModelTrainerArtifact:...
 class ModelEvaluationArtifact:...
