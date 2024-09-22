@@ -84,9 +84,9 @@ class DataTransformation:
             test_arr = np.c_[input_feature_test_arr, target_feature_test_arr]
 
             #Save numpy array
-            utils.save_numpy_array_data(file_path=self.data_transformation_config.tansformed_train_path, 
+            utils.save_numpy_array_data(file_path=self.data_transformation_config.transformed_train_path, 
                                         array=train_arr )
-            utils.save_numpy_array_data(file_path=self.data_transformation_config.tansformed_test_path, 
+            utils.save_numpy_array_data(file_path=self.data_transformation_config.transformed_test_path, 
                                         array=test_arr )            
             
             utils.save_object(file_path=self.data_transformation_config.transform_object_path,
@@ -98,8 +98,8 @@ class DataTransformation:
             data_transformation_artifact = artifact_entity.DataTrasformationArtifact(
                 data_transformation_dir = self.data_transformation_config.data_transformation_dir,
                 transform_object_path = self.data_transformation_config.transform_object_path,
-                transformed_train_path = self.data_transformation_config.tansformed_train_path,
-                transformed_test_path = self.data_transformation_config.tansformed_test_path,
+                transformed_train_path = self.data_transformation_config.transformed_train_path,
+                transformed_test_path = self.data_transformation_config.transformed_test_path,
                 target_encoder_path = self.data_transformation_config.target_encoder_path
             )
 
