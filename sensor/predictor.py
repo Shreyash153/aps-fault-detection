@@ -42,7 +42,7 @@ class ModelResolver:
 
     def get_latest_transformer_path(self,): 
         try:
-            latest_dir = self.get_latest_save_dir_path()
+            latest_dir = self.get_latest_dir_path()
             if latest_dir is None:
                 raise Exception(f"Transformer is not available")
             return os.path.join(latest_dir, self.tansformer_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
@@ -58,16 +58,31 @@ class ModelResolver:
         except Exception as e:
             raise SensorException(e,sys)
         
+    # def get_latest_save_dir_path(self,):
+    #     try:
+    #         latest_dir = self.get_latest_dir_path()
+    #         if latest_dir==None:
+    #             os.path.join(self.model_registery,f"{0}")
+    #         latest_dir_num = int(os.path.basename(self.get_latest_dir_path()))
+    #         return os.path.join(self.model_registery,f"{latest_dir_num+1}")
+
+    #     except Exception as e:
+    #         raise SensorException(e, sys)
+        
     def get_latest_save_dir_path(self,):
         try:
             latest_dir = self.get_latest_dir_path()
-            if latest_dir==None:
-                os.path.join(self.model_registery,f"{0}")
-            latest_dir_num = int(os.path.basename(self.get_latest_dir_path()))
-            return os.path.join(self.model_registery,f"{latest_dir_num+1}")
+            if latest_dir == None:
+                # When no directory exists, return the path for the first model (directory 0)
+                return os.path.join(self.model_registery, f"{0}")
+            
+            # Use the already fetched latest_dir instead of calling get_latest_dir_path() again
+            latest_dir_num = int(os.path.basename(latest_dir))
+            return os.path.join(self.model_registery, f"{latest_dir_num+1}")
 
         except Exception as e:
             raise SensorException(e, sys)
+
         
     def get_latest_save_model_path(self,): 
         try:
