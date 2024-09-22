@@ -11,6 +11,8 @@ TEST_FILE_NAME = "test.csv"
 TRANSFORMER_OBJECT_FILE_NAME = "transformer.pk1"
 TARGET_ENCODER_OBJECT_FILE_NAME = "targer_encoder.pk1"
 MODEL_FILE_NAME = "model.pk1"
+MODEL_TRAINER_EXPECTED_SCORE =0.8
+OVER_FITTING_THRESHOLD = 0.1
 
 class TrainingPipelineConfig:
     def __init__(self):
@@ -58,6 +60,15 @@ class DataTransformationConfig:
 
 
 
-class ModelTrainerConfig:...
+class ModelTrainerConfig:
+      def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        self.model_trainer_dir = os.path.join(training_pipeline_config.artifact_dir,)
+        self.model_path: str = os.path.join(self.model_trainer_dir, )
+        self.expected_score: float = MODEL_TRAINER_EXPECTED_SCORE
+        self.overfitting_threshold = OVER_FITTING_THRESHOLD
+
+
+
+
 class ModelEvaluationConfig:...
 class ModelPusherConfig:...

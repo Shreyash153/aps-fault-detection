@@ -98,8 +98,8 @@ class DataTransformation:
             data_transformation_artifact = artifact_entity.DataTrasformationArtifact(
                 data_transformation_dir = self.data_transformation_config.data_transformation_dir,
                 transform_object_path = self.data_transformation_config.transform_object_path,
-                tansform_train_path = self.data_transformation_config.tansformed_train_path,
-                tansform_test_path = self.data_transformation_config.tansformed_test_path,
+                transformed_train_path = self.data_transformation_config.tansformed_train_path,
+                transformed_test_path = self.data_transformation_config.tansformed_test_path,
                 target_encoder_path = self.data_transformation_config.target_encoder_path
             )
 
