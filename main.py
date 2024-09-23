@@ -7,8 +7,8 @@ print(__name__)
 
 if __name__ =="__main__":
     try:
-        # training_pipeline.start_training_pipeline()
-        output_file = batch_prediction.start_batch_prediction("aps_failure_training_set1.csv")
+        training_pipeline.start_training_pipeline()
+        # output_file = batch_prediction.start_batch_prediction("aps_failure_training_set1.csv")
 
     except Exception as e:
         raise SensorException(e, sys)
