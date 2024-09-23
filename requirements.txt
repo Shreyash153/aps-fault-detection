@@ -15,4 +15,5 @@ websockets==11.0.3
 wincertstore==0.2
 xgboost==1.7.6
 neuro-mf==0.0.5
+apache-airflow
 -e .

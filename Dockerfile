@@ -7,7 +7,7 @@ RUN pip3 install -r requirements.txt
 ENV AIRFLOW_HOME="/app/airflow"
 ENV AIRFLOW_CORE_DAGBAG_IMPORT_TIMEOUT=1000
 ENV AIRFLOW_CORE_ENABLE_XCOM_PICKLING=True
-RUN airglow db init
+RUN airflow db init
 RUN airflow user create -e shreyashmadake153@gmail.com -f Shreyash -l Madake -p admin -r Admin -u admin
 RUN chmod 777 start.sh 
 RUN apt update -y && apt install awscli -y 
