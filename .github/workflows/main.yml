@@ -80,7 +80,7 @@ jobs:
       - name: Install utilities
         run: |
           sudo apt-get update
-          sudo apt-get install - jq unzip
+          sudo apt-get install -y jq unzip
 
       - name: Login to Amazon ECR
         id: login-ecr
